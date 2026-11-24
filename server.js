@@ -19,6 +19,10 @@ db.connect();
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+//function to convert numbers to currency format
+function toCurrency(value) {
+    return Number(value || 0).toLocaleString("en-US", { style: "currency", currency: "USD" });
+}
 
 app.get("/", async (req, res) => {
     try{
@@ -28,7 +32,7 @@ app.get("/", async (req, res) => {
         const totalCustomers = Number(customerCount.rows[0].count);
         const totalPages = Math.max(1, Math.ceil(totalCustomers / pageSize));
 
-        let page = parseInt(req.query.page) || 2;
+        let page = parseInt(req.query.page) || 1;
         page = Math.min(Math.max(page, 1), totalPages);
         const offset = (page - 1) * pageSize;
 

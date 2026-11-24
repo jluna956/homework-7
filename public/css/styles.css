@@ -204,3 +204,6 @@ th {
     pointer-events: none;
     opacity: 0.4;
 }
+
+.pagination { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 16px; }
+.pagination a { text-decoration: none; font-weight: bold; }
